@@ -1,0 +1,144 @@
+@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CodiGo — Curso</title>
+  <link rel="stylesheet" href="~/assets/css/main.css" asp-append-version="true" />
+</head>
+<body>
+  <header class="header">
+    <div class="nav">
+      <!-- Botón Volver corregido con clase CSS -->
+      <button class="btn btn-secondary" onclick="window.location.href='@Url.Action("Dashboard","Home")'">Volver</button>
+      <span class="pill" id="pill-curso">Curso</span>
+      <span class="pill" id="pill-nivel">Lv 1</span>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- ====== Cabecera curso ====== -->
+    <section class="course-header card">
+      <h2 id="titulo-curso">Curso</h2>
+      <p id="helper-xp" class="helper">XP: 0 • Progreso: 0%</p>
+      <div class="progress-bar"><div id="pb" class="progress"></div></div>
+    </section>
+
+    <!-- ====== Teoría ====== -->
+    <section class="card stack" id="teoria-block">
+      <h3>📘 Teoría</h3>
+
+      <!-- CSS -->
+      <div class="theory-block" data-course="1">
+        <p><strong>CSS Moderno:</strong> Variables, Flexbox, Grid, animaciones, y responsive. Buenas prácticas: escala tipográfica fluida, contrastes accesibles, y separación de responsabilidades (layout vs. decoración).</p>
+        <ul class="helper">
+          <li>Variables: <code>:root { --brand: #67e8f9 }</code></li>
+          <li>Layout: <code>display:flex</code> y <code>display:grid</code></li>
+          <li>Transiciones sutiles y estados <code>:hover</code>/<code>:focus</code></li>
+        </ul>
+      </div>
+
+      <!-- JS -->
+      <div class="theory-block" data-course="2">
+        <p><strong>JavaScript Básico:</strong> Variables (<code>let</code>/<code>const</code>), funciones, arrays, control de errores y manipulación del DOM con seguridad.</p>
+        <ul class="helper">
+          <li>Preferir <code>const</code> y <code>let</code> (evitar <code>var</code>)</li>
+          <li>Funciones puras cuando sea posible</li>
+          <li>Logs claros con <code>console.log</code> y manejo de errores <code>try/catch</code></li>
+        </ul>
+      </div>
+
+      <!-- Git -->
+      <div class="theory-block" data-course="3">
+        <p><strong>Git & GitHub:</strong> Flujo local → remoto. Commits atómicos y mensajes descriptivos. Branching simple y PRs.</p>
+        <ul class="helper">
+          <li>Inicializa: <code>git init</code></li>
+          <li>Guarda: <code>git add . && git commit -m "mensaje"</code></li>
+          <li>Publica: <code>git push origin main</code></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ====== Consola Virtual ====== -->
+    <section class="card stack">
+      <h3>💻 Consola Virtual</h3>
+      <textarea id="code-area" class="code"></textarea>
+      <div class="actions">
+        <button class="btn btn-primary" id="run-code" type="button">▶ Ejecutar</button>
+        <button class="btn btn-secondary" id="clear-console" type="button">🗑 Limpiar</button>
+      </div>
+      <div class="console">
+        <iframe id="console-frame" style="width:100%;min-height:180px;border:none;background:#0a0f16;border-radius:8px;"></iframe>
+      </div>
+    </section>
+
+    <!-- ====== Quiz (un solo form con bloques por curso) ====== -->
+    <section class="card stack">
+      <h3>📝 Quiz</h3>
+
+      <form id="quiz-form">
+        <!-- QUIZ CSS -->
+        <div data-course="1">
+          <p>1. ¿Qué propiedad define un color de <em>fondo</em>?</p>
+          <label><input type="radio" name="q1" value="background"> background</label>
+          <label><input type="radio" name="q1" value="border"> border</label>
+          <label><input type="radio" name="q1" value="color"> color</label>
+
+          <p>2. ¿Qué activa flexbox?</p>
+          <label><input type="radio" name="q2" value="flex"> display:flex</label>
+          <label><input type="radio" name="q2" value="grid"> display:grid</label>
+          <label><input type="radio" name="q2" value="block"> display:block</label>
+
+          <p>3. ¿Qué organiza filas y columnas?</p>
+          <label><input type="radio" name="q3" value="grid"> CSS Grid</label>
+          <label><input type="radio" name="q3" value="flex"> Flexbox</label>
+          <label><input type="radio" name="q3" value="inline"> Inline</label>
+        </div>
+
+        <!-- QUIZ JS -->
+        <div data-course="2">
+          <p>1. ¿Cómo defines una función?</p>
+          <label><input type="radio" name="q1" value="function"> function</label>
+          <label><input type="radio" name="q1" value="class"> class</label>
+          <label><input type="radio" name="q1" value="def"> def</label>
+
+          <p>2. ¿Qué palabra clave moderna declara variables?</p>
+          <label><input type="radio" name="q2" value="let"> let</label>
+          <label><input type="radio" name="q2" value="var"> var</label>
+          <label><input type="radio" name="q2" value="const"> const</label>
+
+          <p>3. ¿Cómo enviamos datos a la consola?</p>
+          <label><input type="radio" name="q3" value="console.log"> console.log()</label>
+          <label><input type="radio" name="q3" value="print"> print()</label>
+          <label><input type="radio" name="q3" value="echo"> echo</label>
+        </div>
+
+        <!-- QUIZ GIT -->
+        <div data-course="3">
+          <p>1. ¿Qué comando inicia un repo?</p>
+          <label><input type="radio" name="q1" value="init"> git init</label>
+          <label><input type="radio" name="q1" value="start"> git start</label>
+
+          <p>2. ¿Qué comando guarda cambios?</p>
+          <label><input type="radio" name="q2" value="commit"> git commit</label>
+          <label><input type="radio" name="q2" value="save"> git save</label>
+
+          <p>3. ¿Qué comando envía cambios?</p>
+          <label><input type="radio" name="q3" value="push"> git push</label>
+          <label><input type="radio" name="q3" value="upload"> git upload</label>
+        </div>
+
+        <div class="actions">
+          <button type="submit" class="btn btn-primary">Enviar</button>
+          <button type="button" id="reset-quiz" class="btn btn-secondary">Resetear</button>
+        </div>
+      </form>
+
+      <div id="quiz-feedback" class="feedback"></div>
+    </section>
+  </main>
+
+  <script src="~/assets/js/curso.js"></script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+/* =========================================================
+   main.css — UI unificada (inspirada en auth.css, sin copiarla)
+   Paleta pastel menta–azul, bajo contraste y sombras suaves
+   ========================================================= */
+:root{
+  --bg1:#0d1117;        /* fondo base */
+  --bg2:#121821;        /* fondo panel */
+  --surface:#151c26;    /* tarjeta */
+  --muted:#9aa5b1;      /* texto secundario */
+  --text:#e5e7eb;       /* texto principal */
+  --brand:#67e8f9;      /* cyan pastel */
+  --brand-2:#a7f3d0;    /* menta pastel */
+  --accent:#93c5fd;     /* azul pastel */
+  --violet:#c4b5fd;     /* violeta pastel */
+  --danger:#fca5a5;     /* rojo pastel accesible */
+  --warning:#fcd34d;    /* ámbar suave */
+  --ok:#86efac;         /* verde suave */
+
+  --ring: 0 0 0 3px rgba(147,197,253,.22);
+  --radius:16px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial;
+  color:var(--text);
+  background:
+    radial-gradient(1200px 600px at -10% -10%, #0b1220 0%, transparent 70%),
+    radial-gradient(1000px 600px at 110% 110%, #0b1220 0%, transparent 70%),
+    linear-gradient(180deg,var(--bg1),#0f141d 50%, var(--bg1) 100%);
+}
+
+/* Layouts generales */
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:32px 20px 80px;
+}
+
+.header{
+  position:sticky; top:0; z-index:30;
+  backdrop-filter: blur(8px);
+  background:linear-gradient(180deg, rgba(7,11,18,.82), rgba(7,11,18,.35));
+  border-bottom:1px solid rgba(255,255,255,.05);
+}
+.nav{
+  max-width:1100px; margin:0 auto;
+  display:flex; align-items:center; gap:12px;
+  padding:14px 20px;
+}
+.nav .brand{
+  display:flex; align-items:center; gap:10px;
+  font-weight:900; letter-spacing:.3px; font-size:18px;
+}
+.badge{
+  display:inline-flex; align-items:center; gap:6px;
+  padding:6px 10px; border-radius:999px; font-weight:700;
+  color:#0b1220; background:linear-gradient(90deg,var(--brand),var(--accent));
+  box-shadow:0 4px 12px rgba(103,232,249,.15);
+}
+
+/* Botones */
+.btn{
+  border:0; cursor:pointer; font-weight:800;
+  padding:12px 16px; border-radius:12px; transition:.25s;
+}
+.btn:disabled{opacity:.6; cursor:not-allowed}
+/* Botón primario más suave, con gradiente animado */
+.btn-primary {
+  color: #0b1220;
+  font-weight: 800;
+  background: linear-gradient(270deg, var(--brand-2), var(--accent), var(--violet));
+  background-size: 400% 400%;
+  box-shadow: 0 4px 14px rgba(103,232,249,.15);
+  transition: transform .25s, box-shadow .25s;
+  animation: gradientShift 6s ease infinite; /* 🔥 animación */
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(147,197,253,.25);
+}
+
+/* Animación de gradiente suave */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.btn-secondary{
+  color:var(--text); background:#222b37; border:1px solid rgba(255,255,255,.06);
+}
+.btn-secondary:hover{border-color:rgba(255,255,255,.12)}
+.btn-ghost{
+  color:var(--text); background:transparent; border:1px dashed rgba(255,255,255,.12);
+}
+.btn-danger{
+  color:#0b1220; background:linear-gradient(90deg,#fecaca,var(--danger));
+}
+.btn-danger:hover{filter:brightness(1.05)}
+
+.kbd{font-family:ui-monospace,Menlo,Consolas; font-weight:700; padding:2px 6px; border-radius:8px; background:#1d2633; border:1px solid rgba(255,255,255,.08)}
+
+/* Tarjetas */
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:var(--radius);
+  box-shadow:0 10px 30px rgba(0,0,0,.35);
+  padding:18px;
+}
+
+/* Secciones */
+.section-title{
+  display:flex; align-items:center; gap:10px;
+  font-weight:900; letter-spacing:.2px; font-size:26px; margin:8px 0 14px;
+}
+.section-sub{ color:var(--muted); margin:0 0 14px 0 }
+
+/* Grid de cursos */
+.grid{
+  display:grid; gap:18px;
+  grid-template-columns: 1fr;
+}
+@media(min-width:840px){ .grid{ grid-template-columns: 1fr 1fr; } }
+
+.course-card{ position:relative; }
+.course-card h3{ margin:2px 0 8px; font-size:22px }
+.course-card p{ color:var(--muted); margin:0 0 14px }
+.tag{ display:inline-block; padding:6px 10px; border-radius:999px; background:#202838; color:#b6c0cc; font-weight:700; font-size:12px; margin-right:8px }
+.level{
+  position:absolute; right:14px; top:14px; font-size:12px; font-weight:900;
+  color:#0b1220; padding:6px 10px; border-radius:999px;
+  background:linear-gradient(90deg,var(--violet),var(--accent));
+}
+.actions{ display:flex; gap:12px; margin-top:12px; }
+.progress-bar{
+  height:10px; width:100%; background:#1a2230; border-radius:999px;
+  border:1px solid rgba(255,255,255,.06); overflow:hidden; margin:10px 0 4px;
+}
+.progress{ height:100%; width:0%; background:linear-gradient(90deg,var(--brand),var(--accent)); border-radius:999px; }
+
+/* Curso */
+.course-header{
+  display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:18px;
+}
+.pill{ padding:6px 10px; border-radius:999px; font-weight:800; color:#0b1220; background:linear-gradient(90deg,var(--brand),var(--accent))}
+.stack{ display:grid; gap:18px }
+.console {
+  background:#0a0f16;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:12px;
+  box-shadow: inset 0 0 12px rgba(0,0,0,.6);
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  font-size: 14px;
+  color: var(--text);               /* usé la segunda versión */
+  padding-top: 28px;                /* espacio para la barra superior */
+  position: relative;
+  min-height: 120px;                /* más compacto */
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Barra superior tipo terminal */
+.console::before {
+  content:"";
+  position:absolute;
+  top:10px; left:12px;
+  width:12px; height:12px;
+  border-radius:50%;
+  background:#f87171;
+  box-shadow: 20px 0 #facc15, 40px 0 #34d399;
+}
+
+/* Título de consola */
+.console .helper {
+  font-size: 13px;
+  padding: 8px 14px 4px;
+  color: #9ca3af;
+  margin: 0;
+}
+
+/* Área de salida */
+.console pre {
+  flex:1;
+  margin:0;
+  padding:12px 14px;  /* 🔥 aire interior */
+  overflow:auto;
+  white-space:pre-wrap;
+  word-break:break-word;
+  color:#e5e7eb;
+}
+
+textarea.code{
+  width:100%; min-height:180px; resize:vertical; padding:14px;
+  border-radius:12px; background:#0f1622; color:#dbeafe;
+  border:1px solid rgba(255,255,255,.08); outline:none; transition:.2s;
+  font-family: ui-monospace,Menlo,Consolas;
+}
+textarea.code:focus{ box-shadow: var(--ring) }
+
+.quiz h3{ margin:0 0 10px }
+.q-item{ padding:10px 12px; border-radius:10px; }
+.q-item:hover{ background:#121a27 }
+.q-item input{ transform:translateY(2px) }
+.feedback{ margin-top:10px; font-weight:800 }
+.feedback.ok{ color:var(--ok) }
+.feedback.bad{ color:var(--danger) }
+
+.helper{ color:#9aa5b1; font-size:14px }
+hr.sep{ border:0; border-top:1px solid rgba(255,255,255,.06); margin:16px 0 }
+
+/* Footer sutil */
+.footer{ color:#7b8794; font-size:12px; text-align:center; margin-top:32px }
+
+/* Cards más vistosas */
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: var(--radius);
+  box-shadow: 0 8px 26px rgba(0,0,0,.45);
+  padding: 20px;
+  transition: transform .25s, box-shadow .25s;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0,0,0,.55);
+}
+
+/* Secciones con título */
+.section-title {
+  font-weight: 900;
+  font-size: 1.5rem;
+  background: linear-gradient(90deg, var(--brand), var(--accent), var(--violet));
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textFlow 8s ease infinite;
+}
+
+@keyframes textFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.helper,
+.section-sub,
+.footer {
+  color: var(--muted);
+  transition: color 1.5s ease;
+  animation: subtleColor 12s ease-in-out infinite alternate;
+}
+
+/* Ciclo de color suave */
+@keyframes subtleColor {
+  0%   { color: #9aa5b1; }
+  50%  { color: #a5f3fc; }
+  100% { color: #c4b5fd; }
+}
+
+/* Botones de navegación superiores */
+.header .pill,
+.header .badge,
+.header a.brand {
+  background: linear-gradient(90deg, rgba(103,232,249,.25), rgba(147,197,253,.25));
+  color: var(--text);
+  border: 1px solid rgba(255,255,255,.1);
+  font-weight: 700;
+  box-shadow: none;
+  transition: background .3s ease, transform .2s ease;
+  text-decoration: none !important;
+}
+
+.header .pill:hover,
+.header .badge:hover,
+.header a.brand:hover {
+  background: linear-gradient(90deg, rgba(103,232,249,.35), rgba(147,197,253,.35));
+  transform: translateY(-1px);
+}
+
+.header a:focus,
+.header button:focus,
+.header .pill:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+a {
+  text-decoration: none;
+  position: relative;
+  color: inherit;
+}
+
+a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px; /* un poco separado del texto */
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--brand-2), var(--accent));
+  transition: width 0.3s ease-in-out;
+  border-radius: 2px;
+}
+
+a:hover::after {
+  width: 100%;
+}

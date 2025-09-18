@@ -1,0 +1,41 @@
+@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Registro - CodiGo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="~/assets/css/auth.css" asp-append-version="true" />
+</head>
+<body>
+  <div class="container">
+    <div class="box">
+      <h1 class="logo">CodiGo 🚀</h1>
+      <h2>Crea tu cuenta</h2>
+
+      <form id="registerForm" novalidate>
+        <div class="field">
+          <input id="name" type="text" placeholder="Nombre completo" />
+          <small class="error" id="err-name"></small>
+        </div>
+        <div class="field">
+          <input id="email" type="text" placeholder="Correo electrónico" />
+          <small class="error" id="err-email"></small>
+        </div>
+        <div class="field">
+          <input id="password" type="password" placeholder="Contraseña" />
+          <small class="error" id="err-password"></small>
+        </div>
+        <div class="field">
+          <input id="confirmPassword" type="password" placeholder="Confirmar contraseña" />
+          <small class="error" id="err-confirm"></small>
+        </div>
+        <button type="submit" class="btn">Registrarme</button>
+        <p class="muted">¿Ya tienes cuenta? <a href="/Home/Index">Inicia sesión</a></p>
+      </form>
+    </div>
+  </div>
+
+  <script src="~/assets/js/register.js"></script>
+</body>
+</html>

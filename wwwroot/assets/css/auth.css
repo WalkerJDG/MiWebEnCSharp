@@ -1,0 +1,155 @@
+:root {
+  --bg1:#0d1117;     /* fondo oscuro neutro */
+  --bg2:#161b22;     /* fondo panel */
+  --text:#d1d5db;    /* gris claro */
+  --brand:#6ee7b7;   /* verde menta suave */
+  --accent:#60a5fa;  /* azul suave */
+  --accent2:#a78bfa; /* violeta suave */
+  --danger:#ef4444;  /* rojo accesible */
+}
+
+body {
+  margin:0;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:Consolas,monospace;
+  color:var(--text);
+  background:linear-gradient(135deg,var(--bg1),var(--bg2));
+}
+
+/* Caja principal */
+.box {
+  background:rgba(255,255,255,.02);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:14px;
+  padding:28px 22px;
+  text-align:left;
+  box-shadow:0 4px 14px rgba(0,0,0,.4);
+  animation:fadeIn .6s ease both;
+
+  /*FIX*/
+  width:100%;
+  max-width:400px;
+}
+
+.box input {
+  width: calc(100% - 4px); /* resta lo suficiente para que encaje */
+  display: block;
+  margin: 0 auto;          /* centra dentro del box */
+}
+/* Evita que el borde sume ancho y se desplace a la derecha */
+input { box-sizing: border-box; }
+
+/* opcional, para cubrir más controles sin cambiar el diseño */
+select, textarea, button { box-sizing: border-box; }
+
+
+@keyframes fadeIn {
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Logo animado */
+.logo {
+  font-weight:900;
+  font-size:1.8rem;
+  background:linear-gradient(90deg,var(--brand),var(--accent),var(--accent2));
+  background-size:200% 200%;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:logoFlow 6s ease infinite;
+  text-align:center;
+}
+@keyframes logoFlow {
+  0% { background-position:0% 50%; }
+  50% { background-position:100% 50%; }
+  100% { background-position:0% 50%; }
+}
+
+h2 {
+  margin:12px 0 22px;
+  font-weight:600;
+  color:var(--accent);
+  text-align:center;
+}
+
+/* Campos */
+.field {
+  position:relative;
+  margin-bottom:42px;
+}
+
+input {
+  width:100%;
+  padding:12px;
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:10px;
+  background:var(--bg2);
+  color:var(--text);
+  outline:none;
+  transition:.25s;
+}
+input::placeholder {color:#6b7280;}
+input:focus {
+  border-color:var(--brand);
+  box-shadow:0 0 0 2px rgba(110,231,183,.25);
+}
+
+/* Errores */
+.error {
+  position:absolute;
+  top:calc(100% + 6px);
+  left:6px;
+  right:6px;
+  font-size:.8rem;
+  line-height:1.2;
+  color:var(--danger);
+  white-space:normal;
+  word-break:break-word;
+}
+.error:empty {display:none;}
+
+/* Botón pastel con hover de gradiente */
+.btn {
+  width:100%;
+  padding:12px;
+  border:none;
+  border-radius:10px;
+  margin-top:6px;
+  background:linear-gradient(90deg,#93c5fd,#c4b5fd); /* azul → violeta pastel */
+  color:#fff;
+  font-weight:800;
+  cursor:pointer;
+  transition:background .4s ease, transform .25s;
+  font-family:monospace;
+}
+.btn:hover {
+  background:linear-gradient(90deg,#a5f3fc,#93c5fd,#a7f3d0); /* cyan claro → azul suave → verde menta */
+  transform:translateY(-2px);
+  box-shadow:0 4px 12px rgba(148,163,184,.35);
+}
+.btn:active {
+  transform:scale(.97);
+}
+
+/* Texto inferior */
+.muted {
+  font-size:.9rem;
+  margin-top:14px;
+  text-align:center;
+  color:#9ca3af;
+}
+.muted a {
+  color:var(--accent);
+  font-weight:600;
+  text-decoration:none;
+}
+.muted a:hover {color:var(--brand);}
+
+@media(max-width:500px){
+  .box{width:90%;padding:22px;}
+  .logo{font-size:1.4rem;}
+}
+

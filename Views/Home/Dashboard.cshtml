@@ -1,0 +1,47 @@
+@{ Layout = null; }
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="~/assets/css/main.css" asp-append-version="true" />
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <div class="brand badge">📚 Dashboard</div>
+      <span class="badge" style="margin-left:auto;">Invitado</span>
+      <button class="btn btn-secondary" id="btn-logout">Cerrar sesión</button>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card" style="margin-bottom:22px;">
+      <div class="section-title">✨ Cursos disponibles</div>
+      <p class="section-sub">
+        Selecciona un curso; el botón se adapta: 
+        <span class="kbd">Inscribirme</span> / <span class="kbd">Abrir</span> / <span class="kbd">Cancelar</span>.
+      </p>
+    </section>
+
+    <section class="grid" id="available-section">
+      <!-- Cursos disponibles se inyectan aquí -->
+    </section>
+
+    <section class="card" style="margin:28px 0 14px;">
+      <div class="section-title">🧭 Mis cursos</div>
+      <p class="section-sub">Ábrelos cuando quieras o cancela para reiniciar tu avance.</p>
+    </section>
+
+    <section class="grid" id="my-section">
+      <!-- Mis cursos se inyectan aquí -->
+    </section>
+
+    <p class="footer">Progreso y XP se guardan localmente en tu navegador.</p>
+  </main>
+
+  <script src="~/assets/js/dashboard.js"></script>
+</body>
+</html>
